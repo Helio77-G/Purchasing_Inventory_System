@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\GoodsReceivingNote;
 use App\Models\PurchaseOrder;
 use App\Models\Requisition;
+use App\Models\StockIssue;
 use App\Models\StockLedger;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             StockLedger::REF_GRN => GoodsReceivingNote::class,
+            StockLedger::REF_STOCK_ISSUE => StockIssue::class,
             'REQUISITION' => Requisition::class,
             'PURCHASE_ORDER' => PurchaseOrder::class,
         ]);

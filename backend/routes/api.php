@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\GrnController;
 use App\Http\Controllers\Api\ItemController;
+use App\Http\Controllers\Api\PurchaseOrderController;
+use App\Http\Controllers\Api\RequisitionController;
+use App\Http\Controllers\Api\StockIssueController;
 use App\Http\Controllers\Api\StoreController;
 use App\Http\Controllers\Api\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -59,5 +63,68 @@ Route::middleware(['auth:sanctum', 'role'])->group(function () {
         Route::match(['put', 'patch'], '/departments/{department}', [DepartmentController::class, 'update'])->name('departments.update');
         Route::patch('/departments/{department}/deactivate', [DepartmentController::class, 'deactivate'])->name('departments.deactivate');
         Route::delete('/departments/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
+    });
+
+    // Part 3: Store Requisitions (SR) & Purchase Requisitions (PR)
+    Route::get('/requisitions', [RequisitionController::class, 'index'])->name('requisitions.index');
+    Route::get('/requisitions/{requisition}', [RequisitionController::class, 'show'])->name('requisitions.show');
+
+    Route::middleware('role:department_staff,hod,procurement_officer,store_manager,admin')->group(function () {
+        Route::post('/requisitions', [RequisitionController::class, 'store'])->name('requisitions.store');
+    });
+
+    Route::middleware('role:department_staff,hod,admin')->group(function () {
+        Route::match(['put', 'patch'], '/requisitions/{requisition}', [RequisitionController::class, 'update'])->name('requisitions.update');
+    });
+
+    Route::middleware('role:hod')->group(function () {
+        Route::post('/requisitions/{requisition}/hod-approve', [RequisitionController::class, 'hodApprove'])->name('requisitions.hod-approve');
+    });
+
+    Route::middleware('role:gm')->group(function () {
+        Route::post('/requisitions/{requisition}/gm-approve', [RequisitionController::class, 'gmApprove'])->name('requisitions.gm-approve');
+    });
+
+    Route::middleware('role:hod,gm')->group(function () {
+        Route::post('/requisitions/{requisition}/reject', [RequisitionController::class, 'reject'])->name('requisitions.reject');
+    });
+
+    // Part 4: Procurement & Purchase Orders (PO)
+    Route::middleware('role:procurement_officer,store_manager,store_keeper,gm,hod,admin')->group(function () {
+        Route::get('/purchase-orders', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
+        Route::get('/purchase-orders/{purchaseOrder}', [PurchaseOrderController::class, 'show'])->name('purchase-orders.show');
+    });
+
+    Route::middleware('role:procurement_officer,admin')->group(function () {
+        Route::post('/purchase-orders', [PurchaseOrderController::class, 'store'])->name('purchase-orders.store');
+        Route::match(['put', 'patch'], '/purchase-orders/{purchaseOrder}', [PurchaseOrderController::class, 'update'])->name('purchase-orders.update');
+        Route::post('/purchase-orders/{purchaseOrder}/send', [PurchaseOrderController::class, 'send'])->name('purchase-orders.send');
+        Route::patch('/purchase-orders/{purchaseOrder}/status', [PurchaseOrderController::class, 'updateStatus'])->name('purchase-orders.status');
+    });
+
+    // Part 5: Goods Receiving Notes (GRN) & Atomic Stock IN
+    Route::middleware('role:store_keeper,store_manager,procurement_officer,gm,admin')->group(function () {
+        Route::get('/grns', [GrnController::class, 'index'])->name('grns.index');
+        Route::get('/grns/{grn}', [GrnController::class, 'show'])->name('grns.show');
+    });
+
+    Route::middleware('role:store_keeper,store_manager,admin')->group(function () {
+        Route::post('/grns', [GrnController::class, 'store'])->name('grns.store');
+    });
+
+    Route::middleware('role:store_manager')->group(function () {
+        Route::post('/grns/{grn}/approve', [GrnController::class, 'approve'])->name('grns.approve');
+        Route::post('/grns/{grn}/reject', [GrnController::class, 'reject'])->name('grns.reject');
+    });
+
+    // Part 6: Bulk Stock Issues & Atomic Stock OUT
+    Route::middleware('role:store_keeper,store_manager,department_staff,hod,procurement_officer,gm,admin')->group(function () {
+        Route::get('/stock-issues', [StockIssueController::class, 'index'])->name('stock-issues.index');
+        Route::get('/stock-issues/{stockIssue}', [StockIssueController::class, 'show'])->name('stock-issues.show');
+    });
+
+    Route::middleware('role:store_keeper,store_manager,admin')->group(function () {
+        Route::post('/stock-issues', [StockIssueController::class, 'store'])->name('stock-issues.store');
+        Route::post('/stock-issues/{stockIssue}/post', [StockIssueController::class, 'post'])->name('stock-issues.post');
     });
 });

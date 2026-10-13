@@ -22,6 +22,42 @@
           </NuxtLink>
 
           <div class="pt-3 pb-1 px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            Purchasing & Store Workflows
+          </div>
+
+          <NuxtLink
+            to="/requisitions"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+            active-class="bg-amber-500/20 text-amber-300 border border-amber-500/30"
+          >
+            <span>Requisitions (SR / PR)</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/purchase-orders"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+            active-class="bg-amber-500/20 text-amber-300 border border-amber-500/30"
+          >
+            <span>Purchase Orders (PO)</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/grns"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+            active-class="bg-amber-500/20 text-amber-300 border border-amber-500/30"
+          >
+            <span>Goods Receiving (GRN)</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/stock-issues"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+            active-class="bg-amber-500/20 text-amber-300 border border-amber-500/30"
+          >
+            <span>Bulk Stock Issues (OUT)</span>
+          </NuxtLink>
+
+          <div class="pt-3 pb-1 px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
             Master Data
           </div>
 

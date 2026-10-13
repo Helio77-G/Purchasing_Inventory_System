@@ -139,4 +139,12 @@ class Requisition extends Model
     {
         return $this->hasMany(PurchaseOrder::class);
     }
+
+    /**
+     * Stock issues generated from this requisition (when type = SR).
+     */
+    public function stockIssues(): HasMany
+    {
+        return $this->hasMany(StockIssue::class);
+    }
 }
