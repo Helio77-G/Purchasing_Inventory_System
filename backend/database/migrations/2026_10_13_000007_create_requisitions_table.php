@@ -12,7 +12,7 @@ return new class extends Migration
      * Allowed types: 'SR' (Store Requisition), 'PR' (Purchase Requisition)
      * Allowed SR statuses: 'Pending', 'HOD Approved', 'Partially Issued', 'Issued', 'Rejected'
      * Allowed PR statuses: 'Pending', 'HOD Approved', 'GM Approved', 'PO Generated', 'Rejected'
-     */
+     */ 
     public function up(): void
     {
         Schema::create('requisitions', function (Blueprint $table) {
