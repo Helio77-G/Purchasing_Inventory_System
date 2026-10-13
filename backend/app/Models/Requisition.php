@@ -12,14 +12,21 @@ class Requisition extends Model
     use HasFactory;
 
     public const TYPE_SR = 'SR';
+
     public const TYPE_PR = 'PR';
 
     public const STATUS_PENDING = 'Pending';
+
     public const STATUS_HOD_APPROVED = 'HOD Approved';
+
     public const STATUS_GM_APPROVED = 'GM Approved';
+
     public const STATUS_PO_GENERATED = 'PO Generated';
+
     public const STATUS_PARTIALLY_ISSUED = 'Partially Issued';
+
     public const STATUS_ISSUED = 'Issued';
+
     public const STATUS_REJECTED = 'Rejected';
 
     public const ALLOWED_TYPES = [

@@ -13,9 +13,9 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => 'STR-' . strtoupper(fake()->unique()->lexify('????')),
-            'name' => fake()->unique()->word() . ' Warehouse Store',
-            'location' => 'Basement Level ' . fake()->numberBetween(1, 3),
+            'code' => 'STR-'.strtoupper(fake()->unique()->lexify('????')),
+            'name' => fake()->unique()->word().' Warehouse Store',
+            'location' => 'Basement Level '.fake()->numberBetween(1, 3),
             'description' => fake()->sentence(),
             'is_active' => true,
         ];

@@ -14,7 +14,9 @@ class StockLedger extends Model
     protected $table = 'stock_ledger';
 
     public const TYPE_IN = 'IN';
+
     public const TYPE_OUT = 'OUT';
+
     public const TYPE_ADJ = 'ADJ';
 
     public const ALLOWED_TRANSACTION_TYPES = [
@@ -24,7 +26,9 @@ class StockLedger extends Model
     ];
 
     public const REF_GRN = 'GRN';
+
     public const REF_STOCK_ISSUE = 'STOCK_ISSUE';
+
     public const REF_STOCK_ADJUSTMENT = 'STOCK_ADJUSTMENT';
 
     protected $fillable = [

@@ -13,8 +13,8 @@ class SupplierFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => 'SUP-' . strtoupper(fake()->unique()->bothify('??##')),
-            'name' => fake()->company() . ' Trading Co.',
+            'code' => 'SUP-'.strtoupper(fake()->unique()->bothify('??##')),
+            'name' => fake()->company().' Trading Co.',
             'contact_person' => fake()->name(),
             'email' => fake()->companyEmail(),
             'phone' => fake()->phoneNumber(),

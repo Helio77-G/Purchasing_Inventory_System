@@ -13,7 +13,7 @@ class RoleFactory extends Factory
 {
     public function definition(): array
     {
-        $name = fake()->unique()->jobTitle() . ' ' . Str::random(4);
+        $name = fake()->unique()->jobTitle().' '.Str::random(4);
 
         return [
             'name' => $name,

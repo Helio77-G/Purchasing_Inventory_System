@@ -12,9 +12,13 @@ class PurchaseOrder extends Model
     use HasFactory;
 
     public const STATUS_DRAFT = 'Draft';
+
     public const STATUS_SENT = 'Sent';
+
     public const STATUS_PARTIAL_RECEIVED = 'Partial Received';
+
     public const STATUS_FULLY_RECEIVED = 'Fully Received';
+
     public const STATUS_CANCELLED = 'Cancelled';
 
     public const ALLOWED_STATUSES = [

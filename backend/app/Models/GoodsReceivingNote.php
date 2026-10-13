@@ -14,8 +14,11 @@ class GoodsReceivingNote extends Model
     protected $table = 'goods_receiving_notes';
 
     public const STATUS_DRAFT = 'Draft';
+
     public const STATUS_PENDING = 'Pending';
+
     public const STATUS_APPROVED = 'Approved';
+
     public const STATUS_REJECTED = 'Rejected';
 
     public const ALLOWED_STATUSES = [

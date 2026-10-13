@@ -46,7 +46,7 @@ class Part2MasterDataTest extends TestCase
         $token = $loginRes->json('data.token');
 
         // Profile check with Bearer token
-        $meRes = $this->withHeader('Authorization', 'Bearer ' . $token)
+        $meRes = $this->withHeader('Authorization', 'Bearer '.$token)
             ->getJson('/api/auth/me');
 
         $meRes->assertOk()

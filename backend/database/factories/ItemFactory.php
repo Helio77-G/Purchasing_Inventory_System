@@ -13,7 +13,7 @@ class ItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'sku' => 'SKU-' . strtoupper(fake()->unique()->bothify('???-####')),
+            'sku' => 'SKU-'.strtoupper(fake()->unique()->bothify('???-####')),
             'name' => fake()->words(3, true),
             'category' => fake()->randomElement([
                 'Housekeeping Amenities',

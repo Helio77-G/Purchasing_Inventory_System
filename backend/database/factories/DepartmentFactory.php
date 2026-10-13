@@ -13,8 +13,8 @@ class DepartmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => 'DEPT-' . strtoupper(fake()->unique()->lexify('????')),
-            'name' => fake()->unique()->company() . ' Department',
+            'code' => 'DEPT-'.strtoupper(fake()->unique()->lexify('????')),
+            'name' => fake()->unique()->company().' Department',
             'description' => fake()->sentence(),
             'is_active' => true,
         ];

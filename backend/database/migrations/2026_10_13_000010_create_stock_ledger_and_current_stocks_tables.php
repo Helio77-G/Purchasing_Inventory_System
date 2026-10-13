@@ -55,6 +55,4 @@ return new class extends Migration
         Schema::dropIfExists('stock_ledger');
         Schema::dropIfExists('current_stocks');
     }
-
-    
 };
