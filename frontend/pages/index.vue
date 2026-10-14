@@ -71,6 +71,51 @@
       </NuxtLink>
 
       <NuxtLink
+        to="/inventory/current-stock"
+        class="rounded-xl border border-cyan-300 bg-cyan-50/40 p-5 shadow-sm hover:border-cyan-500 transition-colors"
+      >
+        <div class="text-xs font-semibold uppercase tracking-wider text-cyan-700">
+          Inventory
+        </div>
+        <div class="text-lg font-bold text-slate-900 mt-1">
+          Current Stock & Par Levels
+        </div>
+        <p class="text-xs text-slate-600 mt-1">
+          Monitor warehouse stock balances, low par levels, and verify ledger reconciliation
+        </p>
+      </NuxtLink>
+
+      <NuxtLink
+        to="/inventory/ledger"
+        class="rounded-xl border border-indigo-300 bg-indigo-50/40 p-5 shadow-sm hover:border-indigo-500 transition-colors"
+      >
+        <div class="text-xs font-semibold uppercase tracking-wider text-indigo-700">
+          Audit Trail
+        </div>
+        <div class="text-lg font-bold text-slate-900 mt-1">
+          Stock Ledger
+        </div>
+        <p class="text-xs text-slate-600 mt-1">
+          Immutable transaction history of all posted IN, OUT, and ADJ movements
+        </p>
+      </NuxtLink>
+
+      <NuxtLink
+        to="/inventory/stock-takes"
+        class="rounded-xl border border-purple-300 bg-purple-50/40 p-5 shadow-sm hover:border-purple-500 transition-colors"
+      >
+        <div class="text-xs font-semibold uppercase tracking-wider text-purple-700">
+          Audit & Adjustment
+        </div>
+        <div class="text-lg font-bold text-slate-900 mt-1">
+          Stock Taking & Adjustments
+        </div>
+        <p class="text-xs text-slate-600 mt-1">
+          Physical inventory counting, variance analysis, and atomic stock adjustment posting
+        </p>
+      </NuxtLink>
+
+      <NuxtLink
         to="/suppliers"
         class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm hover:border-amber-400 transition-colors"
       >

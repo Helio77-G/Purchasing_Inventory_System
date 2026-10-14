@@ -46,6 +46,14 @@
             >
               {{ actionLoading ? 'Sending...' : 'Send PO to Supplier' }}
             </button>
+
+            <NuxtLink
+              v-if="['Sent', 'Partially Received'].includes(po.status)"
+              to="/grns"
+              class="rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 text-xs shadow-sm inline-flex items-center gap-1"
+            >
+              <span>Receive Goods (GRN) &rarr;</span>
+            </NuxtLink>
           </div>
         </div>
 

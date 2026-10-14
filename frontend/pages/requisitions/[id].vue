@@ -74,6 +74,23 @@
             >
               Reject Requisition
             </button>
+
+            <!-- Quick Cross-Module Workflow Shortcuts -->
+            <NuxtLink
+              v-if="requisition.type === 'PR' && requisition.status === 'GM Approved'"
+              to="/purchase-orders"
+              class="rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 text-xs shadow-sm inline-flex items-center gap-1"
+            >
+              <span>+ Generate Purchase Order</span>
+            </NuxtLink>
+
+            <NuxtLink
+              v-if="requisition.type === 'SR' && ['HOD Approved', 'Partially Issued'].includes(requisition.status)"
+              to="/stock-issues"
+              class="rounded-lg bg-rose-600 hover:bg-rose-700 text-white font-semibold px-4 py-2 text-xs shadow-sm inline-flex items-center gap-1"
+            >
+              <span>+ Issue Stock (Stock OUT)</span>
+            </NuxtLink>
           </div>
         </div>
 

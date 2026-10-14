@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\GrnController;
+use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\ItemController;
 use App\Http\Controllers\Api\PurchaseOrderController;
 use App\Http\Controllers\Api\RequisitionController;
@@ -11,8 +12,8 @@ use App\Http\Controllers\Api\StoreController;
 use App\Http\Controllers\Api\SupplierController;
 use Illuminate\Support\Facades\Route;
 
-// Public Authentication Route
-Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login');
+// Public Authentication Route with rate limiting
+Route::post('/auth/login', [AuthController::class, 'login'])->middleware('throttle:10,1')->name('auth.login');
 
 // Protected API Routes (Requires valid Sanctum token and active user account)
 Route::middleware(['auth:sanctum', 'role'])->group(function () {
@@ -126,5 +127,23 @@ Route::middleware(['auth:sanctum', 'role'])->group(function () {
     Route::middleware('role:store_keeper,store_manager,admin')->group(function () {
         Route::post('/stock-issues', [StockIssueController::class, 'store'])->name('stock-issues.store');
         Route::post('/stock-issues/{stockIssue}/post', [StockIssueController::class, 'post'])->name('stock-issues.post');
+    });
+
+    // Part 7: Stock Ledger, Current Stock, Stock Taking, and Adjustments
+    Route::middleware('role:store_keeper,store_manager,department_staff,hod,procurement_officer,gm,admin')->group(function () {
+        Route::get('/inventory/current-stock', [InventoryController::class, 'currentStock'])->name('inventory.current-stock');
+        Route::get('/inventory/ledger', [InventoryController::class, 'ledger'])->name('inventory.ledger');
+        Route::get('/inventory/reconciliation', [InventoryController::class, 'reconciliation'])->name('inventory.reconciliation');
+        Route::get('/inventory/stock-takes', [InventoryController::class, 'stockTakes'])->name('inventory.stock-takes.index');
+        Route::get('/inventory/stock-takes/{stockTake}', [InventoryController::class, 'showStockTake'])->name('inventory.stock-takes.show');
+    });
+
+    Route::middleware('role:store_keeper,store_manager,admin')->group(function () {
+        Route::post('/inventory/stock-takes', [InventoryController::class, 'storeStockTake'])->name('inventory.stock-takes.store');
+        Route::match(['put', 'patch'], '/inventory/stock-takes/{stockTake}', [InventoryController::class, 'updateStockTake'])->name('inventory.stock-takes.update');
+    });
+
+    Route::middleware('role:store_manager,admin')->group(function () {
+        Route::post('/inventory/stock-takes/{stockTake}/approve', [InventoryController::class, 'approveStockAdjustment'])->name('inventory.stock-takes.approve');
     });
 });

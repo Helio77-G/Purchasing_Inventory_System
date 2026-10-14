@@ -375,7 +375,7 @@ const formatDate = (dateStr) => {
 
 const loadStores = async () => {
   try {
-    const res = await apiFetch('/api/stores?per_page=100')
+    const res = await apiFetch('/stores?per_page=100')
     stores.value = res.data || []
   } catch (e) {
     // ignore
@@ -384,7 +384,7 @@ const loadStores = async () => {
 
 const loadDepartments = async () => {
   try {
-    const res = await apiFetch('/api/departments?per_page=100')
+    const res = await apiFetch('/departments?per_page=100')
     departments.value = res.data || []
   } catch (e) {
     // ignore
@@ -401,7 +401,7 @@ const fetchIssues = async () => {
     if (filters.value.department_id) query.append('department_id', filters.value.department_id)
     if (filters.value.page) query.append('page', filters.value.page)
 
-    const res = await apiFetch(`/api/stock-issues?${query.toString()}`)
+    const res = await apiFetch(`/stock-issues?${query.toString()}`)
     issues.value = res.data || []
     pagination.value = {
       current_page: res.current_page,
@@ -450,7 +450,7 @@ const openCreateModal = async () => {
   modalLoading.value = true
 
   try {
-    const res = await apiFetch('/api/requisitions?type=SR&per_page=100')
+    const res = await apiFetch('/requisitions?type=SR&per_page=100')
     const list = res.data || []
     eligibleSrs.value = list.filter(sr => ['HOD Approved', 'Partially Issued'].includes(sr.status))
   } catch (e) {
@@ -474,7 +474,7 @@ const onRequisitionSelected = async () => {
 
   modalLoading.value = true
   try {
-    const res = await apiFetch(`/api/requisitions/${modalForm.value.requisition_id}`)
+    const res = await apiFetch(`/requisitions/${modalForm.value.requisition_id}`)
     const sr = res.data
     selectedSr.value = sr
 
@@ -521,7 +521,7 @@ const submitIssue = async () => {
 
   modalSubmitting.value = true
   try {
-    const res = await apiFetch('/api/stock-issues', {
+    const res = await apiFetch('/stock-issues', {
       method: 'POST',
       body: {
         requisition_id: modalForm.value.requisition_id,

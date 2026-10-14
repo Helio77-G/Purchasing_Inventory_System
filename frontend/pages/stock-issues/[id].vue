@@ -273,7 +273,7 @@ const formatCurrency = (val) => {
 const fetchIssue = async () => {
   loading.value = true
   try {
-    const res = await apiFetch(`/api/stock-issues/${route.params.id}`)
+    const res = await apiFetch(`/stock-issues/${route.params.id}`)
     issue.value = res.data
   } catch (e) {
     showToast(e.data?.message || 'Failed to load stock issue', 'error')
@@ -289,7 +289,7 @@ const postIssue = async () => {
 
   posting.value = true
   try {
-    const res = await apiFetch(`/api/stock-issues/${route.params.id}/post`, {
+    const res = await apiFetch(`/stock-issues/${route.params.id}/post`, {
       method: 'POST'
     })
     showToast(res.message || 'Stock Issue posted successfully', 'success')

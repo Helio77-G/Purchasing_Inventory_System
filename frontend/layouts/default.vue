@@ -58,6 +58,34 @@
           </NuxtLink>
 
           <div class="pt-3 pb-1 px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            Inventory & Warehouse Audit
+          </div>
+
+          <NuxtLink
+            to="/inventory/current-stock"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+            active-class="bg-amber-500/20 text-amber-300 border border-amber-500/30"
+          >
+            <span>Current Stock & Par Levels</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/inventory/ledger"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+            active-class="bg-amber-500/20 text-amber-300 border border-amber-500/30"
+          >
+            <span>Stock Ledger Audit Trail</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/inventory/stock-takes"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+            active-class="bg-amber-500/20 text-amber-300 border border-amber-500/30"
+          >
+            <span>Stock Taking & Adjustments</span>
+          </NuxtLink>
+
+          <div class="pt-3 pb-1 px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
             Master Data
           </div>
 

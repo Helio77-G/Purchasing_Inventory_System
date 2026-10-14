@@ -12,8 +12,17 @@ export const useApi = () => {
       headers.Authorization = `Bearer ${token.value}`
     }
 
+    // Normalize endpoint to prevent double '/api/api/...' when baseURL already has '/api'
+    let normalizedEndpoint = endpoint
+    if (typeof endpoint === 'string' && config.public.apiBase) {
+      const baseEndsWithApi = config.public.apiBase.replace(/\/+$/, '').endsWith('/api')
+      if (baseEndsWithApi && normalizedEndpoint.startsWith('/api')) {
+        normalizedEndpoint = normalizedEndpoint.replace(/^\/api(?=\/|\?|$)/, '') || '/'
+      }
+    }
+
     try {
-      return await $fetch(endpoint, {
+      return await $fetch(normalizedEndpoint, {
         baseURL: config.public.apiBase,
         ...options,
         headers
